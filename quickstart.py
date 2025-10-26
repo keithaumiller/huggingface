@@ -25,7 +25,8 @@ def print_menu():
     print("6. 🧪 Test Model Loading")
     print("7. 📚 View Available Models")
     print("8. 🚀 Setup Environment")
-    print("9. ❓ Help & Documentation")
+    print("9. 📥 Browse & Download Models (Ctrl+C safe)")
+    print("10. ❓ Help & Documentation")
     print("0. 🚪 Exit")
     print()
 
@@ -213,7 +214,7 @@ def main():
         print_menu()
         
         try:
-            choice = input("Enter your choice (0-9): ").strip()
+            choice = input("Enter your choice (0-10): ").strip()
         except KeyboardInterrupt:
             print("\n\n👋 Goodbye!")
             break
@@ -240,9 +241,21 @@ def main():
         elif choice == "8":
             setup_environment()
         elif choice == "9":
+            print("🏪 Launching Model Explorer...")
+            print("💡 This tool lets you browse, download, and manage models safely")
+            print("🛑 All downloads are Ctrl+C safe with resume capability")
+            print()
+            try:
+                import subprocess
+                subprocess.run([sys.executable, "model_explorer.py"], check=True)
+            except subprocess.CalledProcessError:
+                print("❌ Error launching model explorer")
+            except KeyboardInterrupt:
+                print("\n⏹️ Model explorer closed")
+        elif choice == "10":
             show_help()
         else:
-            print("❌ Invalid choice. Please select 0-9.")
+            print("❌ Invalid choice. Please select 0-10.")
         
         print("\n" + "="*50 + "\n")
         input("Press Enter to continue...")
